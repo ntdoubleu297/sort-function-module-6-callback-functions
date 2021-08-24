@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<script>
+/* -------------------------
+   Three cases to consider:
+	  a < b, return -1;
+	  a > b, return 1;
+	  a === b, return 0;  
+   ------------------------- */ 
+// 4 through 9 are the rules that javascript imposes on you whenver you are writing a comparison function.  This is the callback function that will make a comparison between 2 items of an array.
+var numbers = [4,2,7,5,1,6,3,9,8];
+
+function compare(a, b) { //this is how JS implments 'sort'.  You MUST write a 'compare' function that retruns one of 3 results.  Whenever you have 2 items (a and b).
+	if (a < b) return -1;
+	if (a > b) return 1;
+	if (a === b) return 0;
+} //the callback is going to pass in a couple of items at a time, and behind the scenes, choose an algorithm in order to sort this list.  
+
+// sort array
+numbers.sort(compare);
+
+// write sorted array to console
+console.log(JSON.stringify(numbers));
+
+//a few things to call out the very first one is that we have an array.  This is simply a list of numbers from 1 to 9 out of order...
+//we are also making a call to the 'sort' function which is part of arrays in Javascript.   And we are passing in a callback (compare);...
+//the callbacks in lines 13 to 17.  
+
+</script>
+</html>  
+
