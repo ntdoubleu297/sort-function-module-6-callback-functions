@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<script src="https://www.google.com/jsapi"></script>
+<script src="chart.js"></script>
+<script src="salaries.js"></script>
+
+<div id="chart_div" style="width: 1280px; height: 1280px;"></div> 
+
+<script> // you see here that I have given you some starter code ^.  And there is 3 things to call out when we get into the script....
+const salaries = chicago.data; // the very first one is the chicago data being assigned to a variable called 'salaries.'  All that JSON data is assigned into this 'chicago' variable in salaries.js line 1. 
+
+const generatePoints = function(){ //there are 3 funcitons - generatePoints, the second one is 'compare', and the third one is run(which will simply execute the order of functions within the page);
+
+	const points  = []; //as you can see here there is an array of points being created, and after that there is a 'forEach';
+	salaries.forEach(function(item){ //so it loops over all of the salaries within the data from the city of Chicago. Now it creates, it pushes points into the points array, and it simply pushes in value pairs.  Thats the job and thats also the salary. 
+		points.push({   // that these 2 postiions in the data give us back both the job title and also the salary.  Strictly extract the job and salary information.
+			job    : item[9],
+			salary : Number(item[11])
+		});					
+	}); 
+
+	// order by salary
+	points.sort(compare); //now what you have to do is uncomment line 23.  But first write the 'compare' function so that all of those salaries are ordered within the array.
+
+	return points;
+};
+
+function compare(a, b) {
+	if (a.salary > b.salary) return 1;
+	if (a.salary < b.salary) return -1;
+	if (a.salary === b.salary) return 0;
+}
+
+
+window.onload = function run(){
+	const points = generatePoints();
+	const dataset = generateDataset(points);	
+	drawChart(dataset);
+};
+
+</script>  
+
+</html>
